@@ -12,15 +12,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 
 @Composable
-fun ScreenA(navController: NavHostController) {
-    Box(modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center) {
+fun  ScreenA(onClick: () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Column {
             Text(text = "ScreenA", fontWeight = FontWeight.Bold)
             Button(onClick = {
-                navController.navigate("B")
+                onClick()
             }) {
                 Text("Go to B")
-            } }
+            }
+        }
     }
 }

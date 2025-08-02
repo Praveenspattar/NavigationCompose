@@ -13,17 +13,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 
 @Composable
-fun ScreenC(navController: NavHostController) {
+fun ScreenC(onClick: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center) {
         Column {
             Text(text = "ScreenC", fontWeight = FontWeight.Bold)
             Button(onClick = {
-                navController.navigate("A"){
-                    popUpTo("A") {inclusive = true}
-                }
+                onClick()
             }) {
                 Text("Go to A")
-            } }
+            }
+        }
     }
 }

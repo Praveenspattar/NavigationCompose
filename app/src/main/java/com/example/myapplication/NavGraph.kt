@@ -11,15 +11,28 @@ import com.example.myapplication.screens.ScreenC
 @Composable
 fun Nav() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "A") {
-        composable(route = "A") {
-            ScreenA(navController)
+    //val weatherViewModel = WeatherViewmodel()
+    NavHost(navController = navController, startDestination = SCREEN_A) {
+        composable<SCREEN_A> {
+            ScreenA(onClick = {
+                navController.navigate(SCREEN_B) {
+                    launchSingleTop
+                }
+            })
         }
-        composable(route = "B") {
-            ScreenB(navController)
+        composable<SCREEN_B> {
+            ScreenB(onClick = {
+                navController.navigate(SCREEN_C)
+            })
         }
-        composable(route = "C") {
-            ScreenC(navController)
+        composable<SCREEN_C> {
+            ScreenC(onClick = {
+                navController.navigate(SCREEN_A) {
+                    popUpTo<SCREEN_A> {
+                        inclusive = true
+                    }
+                }
+            })
         }
     }
 }
